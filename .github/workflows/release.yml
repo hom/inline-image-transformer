@@ -1,0 +1,46 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Publish package to github npm registry
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - release
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ steps.generate_app_token.outputs.token }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Push bump version to remote
+        run: git push origin --atomic --follow-tags -f
+      # Setup .npmrc environment config
+      - name: Setup .npmrc
+        shell: bash
+        run: |
+          sed -i '1 i\\/\/npm.pkg.github.com\/:_authToken=${AUTH_TOKEN}' .npmrc
+          cat .npmrc
+      # Disable private
+      - name: Disable private
+        run: |
+          sed -i '/"private": true/d' package.json
+          cat package.json
+      # Publish
+      - name: Publish to github npm registry
+        env:
+          AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish

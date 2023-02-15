@@ -1,0 +1,6 @@
+# Ignore all file
+*.*
+
+# Exclude
+!package.json
+!dist
