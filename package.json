@@ -6,9 +6,19 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "jest",
+    "image",
+    "transformer",
+    "ts-jest",
+    "babel-jest"
+  ],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hom/inline-image-transformer"
+  },
   "devDependencies": {
     "jest": "^29.4.2",
     "rimraf": "^4.1.2"
