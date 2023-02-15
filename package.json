@@ -1,5 +1,5 @@
 {
-  "name": "file-transformer",
+  "name": "inline-file-transformer",
   "version": "0.0.1",
   "description": "",
   "main": "./dist/index.js",
