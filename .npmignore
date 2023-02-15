@@ -3,4 +3,4 @@
 
 # Exclude
 !package.json
-!dist/index.js
+!index.js

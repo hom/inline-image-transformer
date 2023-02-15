@@ -2,11 +2,9 @@
   "name": "inline-image-transformer",
   "version": "0.0.3",
   "description": "",
-  "main": "./dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "build": "rimraf dist && tsc",
-    "prepublish": "rimraf dist && tsc"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
